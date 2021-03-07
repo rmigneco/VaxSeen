@@ -13,6 +13,7 @@
 		C7BB2AE725F46A6000F430D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BB2AE625F46A6000F430D8 /* Preview Assets.xcassets */; };
 		C7BB2AF225F46A6000F430D8 /* VaxSeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AF125F46A6000F430D8 /* VaxSeenTests.swift */; };
 		C7BB2AFD25F46A6100F430D8 /* VaxSeenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AFC25F46A6100F430D8 /* VaxSeenUITests.swift */; };
+		C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B0D25F46DB800F430D8 /* CVSView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		C7BB2AF825F46A6000F430D8 /* VaxSeenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaxSeenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BB2AFC25F46A6100F430D8 /* VaxSeenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaxSeenUITests.swift; sourceTree = "<group>"; };
 		C7BB2AFE25F46A6100F430D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7BB2B0D25F46DB800F430D8 /* CVSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */,
 				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
+				C7BB2B0D25F46DB800F430D8 /* CVSView.swift */,
 				C7BB2AE325F46A6000F430D8 /* Assets.xcassets */,
 				C7BB2AE825F46A6000F430D8 /* Info.plist */,
 				C7BB2AE525F46A6000F430D8 /* Preview Content */,
@@ -261,6 +264,7 @@
 			files = (
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
 				C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */,
+				C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
