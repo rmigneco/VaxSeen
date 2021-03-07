@@ -14,6 +14,8 @@
 		C7BB2AF225F46A6000F430D8 /* VaxSeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AF125F46A6000F430D8 /* VaxSeenTests.swift */; };
 		C7BB2AFD25F46A6100F430D8 /* VaxSeenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AFC25F46A6100F430D8 /* VaxSeenUITests.swift */; };
 		C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B0D25F46DB800F430D8 /* CVSView.swift */; };
+		C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B1725F47EAB00F430D8 /* CVSController.swift */; };
+		C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2325F486B700F430D8 /* StoreModels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		C7BB2AFC25F46A6100F430D8 /* VaxSeenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaxSeenUITests.swift; sourceTree = "<group>"; };
 		C7BB2AFE25F46A6100F430D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7BB2B0D25F46DB800F430D8 /* CVSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSView.swift; sourceTree = "<group>"; };
+		C7BB2B1725F47EAB00F430D8 /* CVSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSController.swift; sourceTree = "<group>"; };
+		C7BB2B2325F486B700F430D8 /* StoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModels.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,8 @@
 		C7BB2ADE25F46A5F00F430D8 /* VaxSeen */ = {
 			isa = PBXGroup;
 			children = (
+				C7BB2B2225F486A600F430D8 /* Models */,
+				C7BB2B1625F4765A00F430D8 /* Networking */,
 				C7BB2B1525F4760900F430D8 /* Views */,
 				C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */,
 				C7BB2AE325F46A6000F430D8 /* Assets.xcassets */,
@@ -139,6 +145,22 @@
 				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C7BB2B1625F4765A00F430D8 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C7BB2B1725F47EAB00F430D8 /* CVSController.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		C7BB2B2225F486A600F430D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7BB2B2325F486B700F430D8 /* StoreModels.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,8 +292,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
 				C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */,
+				C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */,
 				C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
