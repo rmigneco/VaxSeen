@@ -97,9 +97,8 @@
 		C7BB2ADE25F46A5F00F430D8 /* VaxSeen */ = {
 			isa = PBXGroup;
 			children = (
+				C7BB2B1525F4760900F430D8 /* Views */,
 				C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */,
-				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
-				C7BB2B0D25F46DB800F430D8 /* CVSView.swift */,
 				C7BB2AE325F46A6000F430D8 /* Assets.xcassets */,
 				C7BB2AE825F46A6000F430D8 /* Info.plist */,
 				C7BB2AE525F46A6000F430D8 /* Preview Content */,
@@ -131,6 +130,15 @@
 				C7BB2AFE25F46A6100F430D8 /* Info.plist */,
 			);
 			path = VaxSeenUITests;
+			sourceTree = "<group>";
+		};
+		C7BB2B1525F4760900F430D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C7BB2B0D25F46DB800F430D8 /* CVSView.swift */,
+				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

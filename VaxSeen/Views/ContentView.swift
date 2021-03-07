@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedCVS = false
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: nil, content: {
