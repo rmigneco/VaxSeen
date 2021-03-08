@@ -14,9 +14,11 @@ struct StoreListView: View {
     var body: some View {
         NavigationView {
             List(storeFeed.stores) { (item) in
-                VStack(alignment: .leading, spacing: 5, content: {
-                    Text("\(item.city), \(item.state)")
+                VStack(alignment: .leading, spacing: 10, content: {
                     Text(item.hasAppointments ? "Availabilty!" : "No Availability")
+                        .font(.title2)
+                    Text("\(item.city), \(item.state)")
+                        .font(.body)
                 })
             }
         }
@@ -27,7 +29,7 @@ struct StoreListView: View {
     }
 }
 
-struct StoreLIstView_Previews: PreviewProvider {
+struct StoreListView_Previews: PreviewProvider {
     static var previews: some View {
         StoreListView()
     }

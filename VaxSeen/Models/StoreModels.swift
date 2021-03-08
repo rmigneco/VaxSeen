@@ -31,11 +31,6 @@ struct StoreResponse: Decodable {
         case data
     }
     
-    // TODO: make more dynamic
-    enum StateKeys: String, CodingKey {
-        case pa = "PA"
-    }
-    
     let stores: [Store]
     
     init(from decoder: Decoder) throws {

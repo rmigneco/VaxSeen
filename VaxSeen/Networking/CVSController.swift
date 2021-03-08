@@ -45,9 +45,13 @@ final class CVSController: ObservableObject {
             }
             .decode(type: StoreResponse.self, decoder: JSONDecoder())
             .receive(on: DispatchQueue.main)
-            .sink { (stuff) in
-                // this thing is actually a finished/error enum 
-                print("The thing: \(stuff)")
+            .sink { (result) in
+                switch result {
+                case .finished:
+                    print("Finished Request: \(request)")
+                case .failure(let error):
+                    print("Request failed with Error: \(error)")
+                }
             } receiveValue: { [weak self] (response) in
                 print("Received store data")
                 self?.stores = response.stores
