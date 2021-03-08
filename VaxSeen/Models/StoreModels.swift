@@ -7,6 +7,20 @@
 
 import Foundation
 
+
+fileprivate struct DynamicCodingKey: CodingKey {
+    var stringValue: String
+    var intValue: Int?
+    
+    init?(stringValue: String) {
+        self.stringValue = stringValue
+    }
+    
+    init?(intValue: Int) {
+        return nil
+    }
+}
+
 struct StoreResponse: Decodable {
     
     enum Keys: String, CodingKey {
@@ -28,16 +42,44 @@ struct StoreResponse: Decodable {
         let container = try decoder.container(keyedBy: Keys.self)
         
         let nestedContainer = try container.nestedContainer(keyedBy: DataKeys.self, forKey: .responsePayloadData)
-        let stateContainer = try nestedContainer.nestedContainer(keyedBy: StateKeys.self, forKey: .data)
+        let statesContainer = try nestedContainer.nestedContainer(keyedBy: DynamicCodingKey.self, forKey: .data)
         
-        self.stores = try stateContainer.decode([Store].self, forKey: .pa)
+        var tempStores = [Store]()
+        
+        for key in statesContainer.allKeys {
+            if let codingKey = DynamicCodingKey(stringValue: key.stringValue) {
+                let stores = try statesContainer.decode([Store].self, forKey: codingKey)
+                tempStores.append(contentsOf: stores)
+            }
+        }
+        
+        self.stores = tempStores
     }
 }
 
-struct Store: Decodable {
+struct Store: Decodable, Identifiable {
+    
+    enum Keys: String, CodingKey {
+        case city
+        case state
+        case status
+    }
+    
     let city: String
     let state: String
     let status: String
+    
+    let id: UUID
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        
+        city = try container.decode(String.self, forKey: .city)
+        state = try container.decode(String.self, forKey: .state)
+        status = try container.decode(String.self, forKey: .status)
+        
+        id = UUID()
+    }
 }
 
 extension Store {

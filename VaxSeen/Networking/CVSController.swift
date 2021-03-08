@@ -10,7 +10,7 @@ import Combine
 
 
 
-final class CVSController {
+final class CVSController: ObservableObject {
     
     // everything hard-coded to PA, for now...
     private static let baseUrlString = "https://www.cvs.com/immunizations/covid-19-vaccine.vaccine-status.PA.json?vaccineinfo"
@@ -40,14 +40,17 @@ final class CVSController {
                     httpResponse.statusCode == 200 else {
                         throw URLError(.badServerResponse)
                     }
+                
                 return element.data
             }
             .decode(type: StoreResponse.self, decoder: JSONDecoder())
-            .sink { (_) in
-                print("Received value")
-            } receiveValue: { [weak self] (storeResponse) in
+            .receive(on: DispatchQueue.main)
+            .sink { (stuff) in
+                // this thing is actually a finished/error enum 
+                print("The thing: \(stuff)")
+            } receiveValue: { [weak self] (response) in
                 print("Received store data")
-                self?.stores = storeResponse.stores
+                self?.stores = response.stores
             }
         
         cancellable.store(in: &cancellables)

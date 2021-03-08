@@ -16,6 +16,7 @@
 		C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B0D25F46DB800F430D8 /* CVSView.swift */; };
 		C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B1725F47EAB00F430D8 /* CVSController.swift */; };
 		C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2325F486B700F430D8 /* StoreModels.swift */; };
+		C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		C7BB2B0D25F46DB800F430D8 /* CVSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSView.swift; sourceTree = "<group>"; };
 		C7BB2B1725F47EAB00F430D8 /* CVSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSController.swift; sourceTree = "<group>"; };
 		C7BB2B2325F486B700F430D8 /* StoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModels.swift; sourceTree = "<group>"; };
+		C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				C7BB2B0D25F46DB800F430D8 /* CVSView.swift */,
 				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
+				C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 			files = (
 				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
+				C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */,
 				C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */,
 				C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */,
 				C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */,
