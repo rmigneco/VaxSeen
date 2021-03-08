@@ -20,7 +20,7 @@ final class CVSController: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = Set()
     
-    private let onlyShowAvailableAppointments = false
+    private let onlyShowAvailableAppointments = true
     
     @Published var stores = [Store]()
     
@@ -32,6 +32,8 @@ final class CVSController: ObservableObject {
     }
     
     func fetchAppointments() {
+        stores.removeAll()
+        
         let publishers = [generatePublisher(for: "PA"),
                           generatePublisher(for: "NJ"),
                           generatePublisher(for: "DE")]
