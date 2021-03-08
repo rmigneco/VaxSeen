@@ -20,6 +20,8 @@ final class CVSController: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = Set()
     
+    private let onlyShowAvailableAppointments = false
+    
     @Published var stores = [Store]()
     
     init() {
@@ -29,12 +31,37 @@ final class CVSController: ObservableObject {
         self.session = URLSession(configuration: config)
     }
     
-    
     func fetchAppointments() {
-        // TODO don't bang
-        var request = URLRequest(url: URL(string: CVSController.baseUrlString)!)
+        let publishers = [generatePublisher(for: "PA"),
+                          generatePublisher(for: "NJ"),
+                          generatePublisher(for: "DE")]
+            .compactMap({$0})
+        
+        Publishers.MergeMany(publishers)
+            .receive(on: DispatchQueue.main)
+            .sink { (result) in
+                switch result {
+                case .finished:
+                    print("Finished Request")
+                case .failure(let error):
+                    print("Request failed with Error: \(error)")
+                }
+            } receiveValue: { [weak self] (response) in
+                let showAvailable = self?.onlyShowAvailableAppointments ?? true
+                self?.stores.append(contentsOf: response.stores.filter({ showAvailable ? $0.hasAppointments : true }))
+            }
+            .store(in: &cancellables)
+
+    }
+    
+    private func generatePublisher(for stateCode: String) -> AnyPublisher<StoreResponse, Error>? {
+        guard let url = URL(string: "https://www.cvs.com/immunizations/covid-19-vaccine.vaccine-status." + stateCode + ".json?vaccineinfo") else {
+            return nil
+        }
+        
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        let cancellable = session.dataTaskPublisher(for: request)
+        let publisher = session.dataTaskPublisher(for: request)
             .tryMap() { element -> Data in
                 guard let httpResponse = element.response as? HTTPURLResponse,
                     httpResponse.statusCode == 200 else {
@@ -44,19 +71,8 @@ final class CVSController: ObservableObject {
                 return element.data
             }
             .decode(type: StoreResponse.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
-            .sink { (result) in
-                switch result {
-                case .finished:
-                    print("Finished Request: \(request)")
-                case .failure(let error):
-                    print("Request failed with Error: \(error)")
-                }
-            } receiveValue: { [weak self] (response) in
-                print("Received store data")
-                self?.stores = response.stores
-            }
+            .eraseToAnyPublisher()
         
-        cancellable.store(in: &cancellables)
+        return publisher
     }
 }
