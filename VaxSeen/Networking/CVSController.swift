@@ -23,6 +23,7 @@ final class CVSController: ObservableObject {
     private let onlyShowAvailableAppointments = true
     
     @Published var stores = [Store]()
+    @Published var isFetchingStores = false
     
     init() {
         let config = URLSessionConfiguration.default
@@ -39,9 +40,12 @@ final class CVSController: ObservableObject {
                           generatePublisher(for: "DE")]
             .compactMap({$0})
         
+        isFetchingStores = true
+        
         Publishers.MergeMany(publishers)
             .receive(on: DispatchQueue.main)
-            .sink { (result) in
+            .sink { [weak self] (result) in
+                self?.isFetchingStores = false 
                 switch result {
                 case .finished:
                     print("Finished Request")
