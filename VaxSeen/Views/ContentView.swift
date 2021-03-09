@@ -24,6 +24,9 @@ struct ContentView: View {
                         .border(Color.red, width: 5)
                         .cornerRadius(5)
                 }
+                .padding()
+                Text("Currently checking NJ, DE and PA")
+                    .font(.footnote)
             })
         }
     }
