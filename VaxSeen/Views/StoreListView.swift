@@ -11,6 +11,7 @@ struct StoreListView: View {
     
     @ObservedObject var storeFeed = CVSController()
     @State private var showingAlert = false
+    @State private var showingMap = false
     
     var body: some View {
         NavigationView {
@@ -51,38 +52,34 @@ struct StoreListView: View {
     
     var storesView: some View {
         List(storeFeed.stores) { (item) in
-            StoreListItemView(storeItem: item) {
-                print("Map Handler")
-                // In the handler
-            }
-//            Button(action: {
-//                self.showingAlert = true
-//            },
-//            label: {
-//                VStack(alignment: .leading, spacing: 10, content: {
-//                    Text(item.hasAppointments ? "Appointments Available!" : "No Availability")
-//                        .font(.title2)
-//                    Text("\(item.city), \(item.state)")
-//                        .font(.body)
-//                })
-//            })
+            Button(action: {
+                self.showingAlert.toggle()
+            },
+            label: {
+                StoreListItemView(storeItem: item) {
+                    showingMap.toggle()
+                }
+            })
+            .alert(isPresented: self.$showingAlert,
+                   content: {
+                    Alert(title: Text("Book now!"),
+                          message: Text("Continue to the CVS website to book"),
+                          primaryButton: .default(Text("Continue"),
+                                                  action: {
+                                                    self.showingAlert = false
+                                                    if let url = URL(string: "https://www.cvs.com/vaccine/intake/store/covid-screener/covid-qns") {
+                                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                                    }
+                                                  }),
+                          secondaryButton: .cancel({
+                            self.showingAlert = false
+                          })
+                    )
+            })
+            .sheet(isPresented: $showingMap, content: {
+                Text("Text")
+            })
         }
-        .alert(isPresented: self.$showingAlert,
-               content: {
-                Alert(title: Text("Book now!"),
-                      message: Text("Continue to the CVS website to book"),
-                      primaryButton: .default(Text("Continue"),
-                                              action: {
-                                                self.showingAlert = false
-                                                if let url = URL(string: "https://www.cvs.com/vaccine/intake/store/covid-screener/covid-qns") {
-                                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                                }
-                                              }),
-                      secondaryButton: .cancel({
-                        self.showingAlert = false
-                      })
-                )
-        })
     }
 }
 

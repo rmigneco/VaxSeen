@@ -22,15 +22,17 @@ struct StoreListItemView: View {
             })
             Spacer(minLength: 5)
             Button(
-                action: {},
+                action: directionsHandler,
                 label: {
                     Image(systemName: "map")
                         .font(.largeTitle)
+                        .foregroundColor(.black)
                 }
             )
             .onTapGesture {
                 directionsHandler()
             }
+            .buttonStyle(BorderlessButtonStyle())
         })
     }
 }
