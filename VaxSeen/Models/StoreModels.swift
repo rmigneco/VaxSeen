@@ -75,6 +75,15 @@ struct Store: Decodable, Identifiable {
         
         id = UUID()
     }
+    
+    init(city: String, state: String, status: String) {
+        id = UUID()
+        self.city = city
+        self.state = state
+        self.status = status
+    }
+    
+    static let testStore = Store(city: "Philadelphia", state: "PA", status: "Available")
 }
 
 extension Store {

@@ -51,17 +51,21 @@ struct StoreListView: View {
     
     var storesView: some View {
         List(storeFeed.stores) { (item) in
-            Button(action: {
-                self.showingAlert = true
-            },
-            label: {
-                VStack(alignment: .leading, spacing: 10, content: {
-                    Text(item.hasAppointments ? "Appointments Available!" : "No Availability")
-                        .font(.title2)
-                    Text("\(item.city), \(item.state)")
-                        .font(.body)
-                })
-            })
+            StoreListItemView(storeItem: item) {
+                print("Map Handler")
+                // In the handler
+            }
+//            Button(action: {
+//                self.showingAlert = true
+//            },
+//            label: {
+//                VStack(alignment: .leading, spacing: 10, content: {
+//                    Text(item.hasAppointments ? "Appointments Available!" : "No Availability")
+//                        .font(.title2)
+//                    Text("\(item.city), \(item.state)")
+//                        .font(.body)
+//                })
+//            })
         }
         .alert(isPresented: self.$showingAlert,
                content: {
