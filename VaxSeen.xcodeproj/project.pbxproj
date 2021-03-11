@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E4F25F9B21C009E68FA /* StoreMapView.swift */; };
+		C7867E5525F9B452009E68FA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E5425F9B452009E68FA /* LocationController.swift */; };
 		C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78840EC25F852C00039A8AC /* StoreListItemView.swift */; };
 		C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */; };
 		C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AE125F46A5F00F430D8 /* ContentView.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C7867E4F25F9B21C009E68FA /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
+		C7867E5425F9B452009E68FA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		C78840EC25F852C00039A8AC /* StoreListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItemView.swift; sourceTree = "<group>"; };
 		C7BB2ADC25F46A5F00F430D8 /* VaxSeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaxSeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaxSeenApp.swift; sourceTree = "<group>"; };
@@ -149,6 +153,7 @@
 				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
 				C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */,
 				C78840EC25F852C00039A8AC /* StoreListItemView.swift */,
+				C7867E4F25F9B21C009E68FA /* StoreMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BB2B1725F47EAB00F430D8 /* CVSController.swift */,
+				C7867E5425F9B452009E68FA /* LocationController.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -301,9 +307,11 @@
 				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
 				C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */,
+				C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */,
 				C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */,
 				C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */,
 				C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */,
+				C7867E5525F9B452009E68FA /* LocationController.swift in Sources */,
 				C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

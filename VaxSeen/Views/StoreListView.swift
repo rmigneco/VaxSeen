@@ -77,7 +77,7 @@ struct StoreListView: View {
                     )
             })
             .sheet(isPresented: $showingMap, content: {
-                Text("Text")
+                StoreMapView(store: item)
             })
         }
     }
