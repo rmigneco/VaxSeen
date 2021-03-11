@@ -67,7 +67,7 @@ struct StoreListView: View {
                           primaryButton: .default(Text("Continue"),
                                                   action: {
                                                     self.showingAlert = false
-                                                    if let url = URL(string: "https://www.cvs.com/vaccine/intake/store/covid-screener/covid-qns") {
+                                                    if let url = URL(string: Store.cvsCovidQuestionUrl) {
                                                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                                     }
                                                   }),
