@@ -17,7 +17,7 @@
                BlueprintIdentifier = "C7BB2ADB25F46A5F00F430D8"
                BuildableName = "VaxSeen.app"
                BlueprintName = "VaxSeen"
-               ReferencedContainer = "container:">
+               ReferencedContainer = "container:VaxSeen.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,7 +47,7 @@
             BlueprintIdentifier = "C7BB2ADB25F46A5F00F430D8"
             BuildableName = "VaxSeen.app"
             BlueprintName = "VaxSeen"
-            ReferencedContainer = "container:">
+            ReferencedContainer = "container:VaxSeen.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -64,7 +64,7 @@
             BlueprintIdentifier = "C7BB2ADB25F46A5F00F430D8"
             BuildableName = "VaxSeen.app"
             BlueprintName = "VaxSeen"
-            ReferencedContainer = "container:">
+            ReferencedContainer = "container:VaxSeen.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
