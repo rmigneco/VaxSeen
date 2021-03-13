@@ -4,10 +4,28 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>VaxSeen.xcscheme_^#shared#^_</key>
+		<key>VaxSeen.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>C7BB2ADB25F46A5F00F430D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7BB2AEC25F46A6000F430D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7BB2AF725F46A6000F430D8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
