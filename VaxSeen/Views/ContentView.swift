@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var userRegionStore = RegionDataStore()
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: nil, content: {
@@ -29,6 +31,7 @@ struct ContentView: View {
                     .font(.footnote)
             })
         }
+        .environmentObject(userRegionStore)
     }
 }
 
