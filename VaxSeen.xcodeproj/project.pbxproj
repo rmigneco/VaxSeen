@@ -10,7 +10,7 @@
 		C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E4F25F9B21C009E68FA /* StoreMapView.swift */; };
 		C7867E5525F9B452009E68FA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E5425F9B452009E68FA /* LocationController.swift */; };
 		C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78840EC25F852C00039A8AC /* StoreListItemView.swift */; };
-		C79C01E425FE56DA00C23F30 /* StateDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C01E325FE56DA00C23F30 /* StateDataStore.swift */; };
+		C79C01E425FE56DA00C23F30 /* RegionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C01E325FE56DA00C23F30 /* RegionDataStore.swift */; };
 		C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */; };
 		C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AE125F46A5F00F430D8 /* ContentView.swift */; };
 		C7BB2AE425F46A6000F430D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BB2AE325F46A6000F430D8 /* Assets.xcassets */; };
@@ -44,7 +44,7 @@
 		C7867E4F25F9B21C009E68FA /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
 		C7867E5425F9B452009E68FA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		C78840EC25F852C00039A8AC /* StoreListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItemView.swift; sourceTree = "<group>"; };
-		C79C01E325FE56DA00C23F30 /* StateDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateDataStore.swift; sourceTree = "<group>"; };
+		C79C01E325FE56DA00C23F30 /* RegionDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionDataStore.swift; sourceTree = "<group>"; };
 		C7BB2ADC25F46A5F00F430D8 /* VaxSeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaxSeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaxSeenApp.swift; sourceTree = "<group>"; };
 		C7BB2AE125F46A5F00F430D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				C7BB2B2325F486B700F430D8 /* StoreModels.swift */,
-				C79C01E325FE56DA00C23F30 /* StateDataStore.swift */,
+				C79C01E325FE56DA00C23F30 /* RegionDataStore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
-				C79C01E425FE56DA00C23F30 /* StateDataStore.swift in Sources */,
+				C79C01E425FE56DA00C23F30 /* RegionDataStore.swift in Sources */,
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
 				C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */,
 				C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */,

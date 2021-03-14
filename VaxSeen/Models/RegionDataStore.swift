@@ -1,5 +1,5 @@
 //
-//  StateDataStore.swift
+//  RegionDataStore.swift
 //  VaxSeen
 //
 //  Created by Ray Migneco on 3/14/21.
