@@ -13,6 +13,14 @@ struct SelectableRegion: Codable {
     let isSelected: Bool
 }
 
+extension SelectableRegion: Identifiable {
+    var id: String {
+        return region.code
+    }
+}
+
+extension SelectableRegion: Hashable { }
+
 struct Region: Codable {
     let name: String
     let code: String
