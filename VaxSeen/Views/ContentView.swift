@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    var userRegionStore = RegionDataStore()
+    
+    @State private var showingRegionSettings = false
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: nil, content: {
@@ -25,10 +29,19 @@ struct ContentView: View {
                         .cornerRadius(5)
                 }
                 .padding()
-                Text("Currently checking NJ, DE and PA")
-                    .font(.footnote)
             })
+            .toolbar {
+                Button {
+                    showingRegionSettings.toggle()
+                } label: {
+                    Image(systemName: "gearshape")
+                }
+            }
         }
+        .sheet(isPresented: $showingRegionSettings, content: {
+            RegionPickerView(isPresented: $showingRegionSettings)
+        })
+        .environmentObject(userRegionStore)
     }
 }
 
