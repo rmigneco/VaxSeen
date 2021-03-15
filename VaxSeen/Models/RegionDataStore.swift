@@ -80,28 +80,20 @@ final class RegionDataStore: ObservableObject {
     
     private static let storedUserRegions = "com.vaxseen.userRegions"
     
-    var storedRegions = [Region]()
     @Published var selectableRegions: [Region]
+    @Published var selectedRegions:Set<Region>
     
     init() {
         // get stored states
+        var storedRegions = [Region]()
         if let data = UserDefaults.standard.data(forKey: RegionDataStore.storedUserRegions) {
             let decoder = JSONDecoder()
             storedRegions = (try? decoder.decode([Region].self, from: data)) ?? [Region]()
         }
         
-        let storedRegionSet = Set<Region>(storedRegions)
+        self.selectedRegions = Set<Region>(storedRegions)
         selectableRegions = [Region]()
         selectableRegions.append(contentsOf: Region.allRegions)
-        
-//        for region in Region.allRegions {
-//            if storedRegionSet.contains(region) {
-//                selectableRegions.append(SelectableRegion(region: region, isSelected: true))
-//            }
-//            else {
-//                selectableRegions.append(SelectableRegion(region: region, isSelected: false))
-//            }
-//        }
     }
     
     // TODO: need methods to save 

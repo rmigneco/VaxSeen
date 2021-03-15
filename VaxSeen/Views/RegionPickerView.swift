@@ -10,10 +10,6 @@ import SwiftUI
 struct RegionPickerView: View {
     
     @EnvironmentObject var userRegionStore: RegionDataStore
-    @State private var selection: Set<Region> = [
-        Region(name: "Pennsylvania", code: "PA"),
-        Region(name: "New Jersey", code: "NJ")
-    ]
     
     var body: some View {
         NavigationView {
@@ -22,23 +18,23 @@ struct RegionPickerView: View {
                     .font(.body)
                     .multilineTextAlignment(.center)
                 
-                List(userRegionStore.selectableRegions, selection: $selection) { (item) in
+                List(userRegionStore.selectableRegions, selection: $userRegionStore.selectedRegions) { (item) in
                     Button(action: {
                         print("Selected State: \(item.code)")
-                        if selection.contains(item) {
-                            selection.remove(item)
+                        if userRegionStore.selectedRegions.contains(item) {
+                            userRegionStore.selectedRegions.remove(item)
                         }
                         else {
-                            selection.insert(item)
+                            userRegionStore.selectedRegions.insert(item)
                         }
-                        for (index, thing) in selection.enumerated() {
+                        for (_, thing) in userRegionStore.selectedRegions.enumerated() {
                             print("item \(thing.code)")
                         }
                     }, label: {
                         HStack(alignment: .center, spacing: 5, content: {
                             Text("\(item.name)")
                             Spacer()
-                            if selection.contains(item) {
+                            if userRegionStore.selectedRegions.contains(item) {
                                 Image(systemName: "checkmark.circle.fill")
                             }
                             else {
