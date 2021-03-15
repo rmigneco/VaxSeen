@@ -11,6 +11,8 @@ struct ContentView: View {
     
     var userRegionStore = RegionDataStore()
     
+    @State private var showingRegionSettings = false
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: nil, content: {
@@ -29,6 +31,14 @@ struct ContentView: View {
                 .padding()
                 Text("Currently checking NJ, DE and PA")
                     .font(.footnote)
+            })
+            .toolbar {
+                Button("Settings") {
+                    showingRegionSettings.toggle()
+                }
+            }
+            .sheet(isPresented: $showingRegionSettings, content: {
+                RegionPickerView()
             })
         }
         .environmentObject(userRegionStore)

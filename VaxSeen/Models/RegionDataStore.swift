@@ -38,7 +38,7 @@ extension Region {
     
     static var allRegions: [Region] = [
         Region(name: "Alabama", code: "AL"),
-        Region(name: "Arizone", code: "AZ"),
+        Region(name: "Arizona", code: "AZ"),
         Region(name: "Arkansas", code: "AK"),
         Region(name: "California", code: "CA"),
         Region(name: "Colorado", code: "CO"),
@@ -81,7 +81,7 @@ final class RegionDataStore: ObservableObject {
     private static let storedUserRegions = "com.vaxseen.userRegions"
     
     var storedRegions = [Region]()
-    @Published var selectableRegions = [SelectableRegion]()
+    @Published var selectableRegions: [Region]
     
     init() {
         // get stored states
@@ -91,14 +91,17 @@ final class RegionDataStore: ObservableObject {
         }
         
         let storedRegionSet = Set<Region>(storedRegions)
-        for region in Region.allRegions {
-            if storedRegionSet.contains(region) {
-                selectableRegions.append(SelectableRegion(region: region, isSelected: true))
-            }
-            else {
-                selectableRegions.append(SelectableRegion(region: region, isSelected: false))
-            }
-        }
+        selectableRegions = [Region]()
+        selectableRegions.append(contentsOf: Region.allRegions)
+        
+//        for region in Region.allRegions {
+//            if storedRegionSet.contains(region) {
+//                selectableRegions.append(SelectableRegion(region: region, isSelected: true))
+//            }
+//            else {
+//                selectableRegions.append(SelectableRegion(region: region, isSelected: false))
+//            }
+//        }
     }
     
     // TODO: need methods to save 
