@@ -96,6 +96,14 @@ final class RegionDataStore: ObservableObject {
         selectableRegions.append(contentsOf: Region.allRegions)
     }
     
-    // TODO: need methods to save 
+    
+    func updateStoredRegions() {
+        let allSelectedRegions = Array(selectedRegions)
+        
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(allSelectedRegions) {
+            UserDefaults.standard.set(data, forKey: RegionDataStore.storedUserRegions)
+        }
+    } 
     
 }

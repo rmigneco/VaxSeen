@@ -38,7 +38,7 @@ struct ContentView: View {
                 }
             }
             .sheet(isPresented: $showingRegionSettings, content: {
-                RegionPickerView()
+                RegionPickerView(isPresented: $showingRegionSettings)
             })
         }
         .environmentObject(userRegionStore)

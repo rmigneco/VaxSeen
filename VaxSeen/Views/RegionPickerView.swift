@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct RegionPickerView: View {
-    
     @EnvironmentObject var userRegionStore: RegionDataStore
+    
+    @Binding var isPresented: Bool
     
     var body: some View {
         NavigationView {
@@ -47,12 +48,28 @@ struct RegionPickerView: View {
             .navigationBarTitle(
                 Text("Region Selection")
             )
+            .toolbar {
+                 ToolbarItem(placement: .navigationBarLeading) {
+                     Button("Cancel") {
+                        print("Cancel tapped!")
+                        isPresented = false
+                     }
+                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Save") {
+                        print("Save tapped!")
+                        userRegionStore.updateStoredRegions()
+                        isPresented = false
+                    }
+                }
+             }
         }
     }
 }
 
-struct RegionPickerView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegionPickerView()
-    }
-}
+//struct RegionPickerView_Previews: PreviewProvider {
+//    // TODO: fix this
+////    static var previews: some View {
+////        RegionPickerView(isPresented: true)
+////    }
+//}
