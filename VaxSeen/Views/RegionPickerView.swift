@@ -15,9 +15,10 @@ struct RegionPickerView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center, spacing: 10) {
-                Text("Select the regions you'd like to find appointments in")
+                Text("Select region(s) to find appointments")
                     .font(.body)
                     .multilineTextAlignment(.center)
+                    .padding(.all, 15)
                 
                 List(userRegionStore.selectableRegions, selection: $userRegionStore.selectedRegions) { (item) in
                     Button(action: {
@@ -48,6 +49,7 @@ struct RegionPickerView: View {
             .navigationBarTitle(
                 Text("Region Selection")
             )
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                  ToolbarItem(placement: .navigationBarLeading) {
                      Button("Cancel") {

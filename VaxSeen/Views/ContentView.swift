@@ -29,18 +29,18 @@ struct ContentView: View {
                         .cornerRadius(5)
                 }
                 .padding()
-                Text("Currently checking NJ, DE and PA")
-                    .font(.footnote)
             })
             .toolbar {
-                Button("Settings") {
+                Button {
                     showingRegionSettings.toggle()
+                } label: {
+                    Image(systemName: "gearshape")
                 }
             }
-            .sheet(isPresented: $showingRegionSettings, content: {
-                RegionPickerView(isPresented: $showingRegionSettings)
-            })
         }
+        .sheet(isPresented: $showingRegionSettings, content: {
+            RegionPickerView(isPresented: $showingRegionSettings)
+        })
         .environmentObject(userRegionStore)
     }
 }

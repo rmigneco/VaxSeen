@@ -32,13 +32,14 @@ final class CVSController: ObservableObject {
         self.session = URLSession(configuration: config)
     }
     
-    func fetchAppointments() {
+    func fetchAppointments(regionCodes: [String]) {
         stores.removeAll()
         
-        let publishers = [generatePublisher(for: "PA"),
-                          generatePublisher(for: "NJ"),
-                          generatePublisher(for: "DE")]
-            .compactMap({$0})
+        guard !regionCodes.isEmpty else { return }
+        
+        let publishers = regionCodes.map { (code) -> AnyPublisher<StoreResponse, Error>? in
+            generatePublisher(for: code)
+        }.compactMap({$0})
         
         isFetchingStores = true
         
