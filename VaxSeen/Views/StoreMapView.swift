@@ -20,13 +20,16 @@ struct StoreMapView: View {
     var body: some View {
         NavigationView {
             Map(coordinateRegion: $region, showsUserLocation: true)
+                .navigationTitle("\(store.city), \(store.state)")
+                .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Locaation")
         .onAppear {
             locationController.geoCodeAddress("\(store.city), \(store.state)") { (placemark) in
-                if let coordinate = placemark?.location?.coordinate {
-                    region = MKCoordinateRegion(center: coordinate,
-                                                span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
+                DispatchQueue.main.async {
+                    if let coordinate = placemark?.location?.coordinate {
+                        region = MKCoordinateRegion(center: coordinate,
+                                                    span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
+                    }
                 }
             }
         }

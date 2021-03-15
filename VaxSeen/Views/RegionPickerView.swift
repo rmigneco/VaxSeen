@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegionPickerView: View {
     @EnvironmentObject var userRegionStore: RegionDataStore
+    @Environment(\.presentationMode) var presentationMode
     
     @Binding var isPresented: Bool
     
@@ -54,14 +55,16 @@ struct RegionPickerView: View {
                  ToolbarItem(placement: .navigationBarLeading) {
                      Button("Cancel") {
                         print("Cancel tapped!")
-                        isPresented = false
+                        presentationMode.wrappedValue.dismiss()
+//                        isPresented = false
                      }
                  }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
                         print("Save tapped!")
                         userRegionStore.updateStoredRegions()
-                        isPresented = false
+                        presentationMode.wrappedValue.dismiss()
+//                        isPresented = false
                     }
                 }
              }

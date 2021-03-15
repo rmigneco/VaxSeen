@@ -7,14 +7,24 @@
 
 import SwiftUI
 
+fileprivate enum ActiveSheet: Identifiable {
+    case settings
+    case mapView
+    
+    var id: Int {
+        return hashValue
+    }
+}
+
 struct StoreListView: View {
     
     @EnvironmentObject var userRegionStore: RegionDataStore
     
     @ObservedObject var storeFeed = CVSController()
     @State private var showingAlert = false
-    @State private var showingMap = false
     @State private var showingRegionSettings = false
+    @State private var selectedMapStore: Store? = nil
+    @State private var activeSheet: ActiveSheet?
     
     var body: some View {
         dataView
@@ -24,16 +34,34 @@ struct StoreListView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         showingRegionSettings.toggle()
+                        activeSheet = .settings
                     } label: {
                         Image(systemName: "gearshape")
                     }
                 }
             }
-            .sheet(isPresented: $showingRegionSettings, onDismiss: {
-                reloadStoreFeed()
-            }, content: {
-                RegionPickerView(isPresented: $showingRegionSettings)
+            .sheet(item: $activeSheet,
+                   onDismiss: {
+                        reloadStoreFeed()
+                   },
+                   content: { (item) in
+                    switch(item) {
+                        case .settings:
+                            RegionPickerView(isPresented: $showingRegionSettings)
+                        case .mapView:
+                            if let mapStore = selectedMapStore {
+                                StoreMapView(store: mapStore)
+                            }
+                            else {
+                                Text("Unknown Error, Try Again")
+                            }
+                    }
             })
+//            .sheet(isPresented: $showingRegionSettings, onDismiss: {
+//                reloadStoreFeed()
+//            }, content: {
+//                RegionPickerView(isPresented: $showingRegionSettings)
+//            })
             .onAppear {
                 reloadStoreFeed()
             }
@@ -80,30 +108,31 @@ struct StoreListView: View {
                 },
                 label: {
                     StoreListItemView(storeItem: item) {
-                        showingMap.toggle()
+                        selectedMapStore = item
+                        activeSheet = .mapView
                     }
-                })
-                .alert(isPresented: self.$showingAlert,
-                       content: {
-                        Alert(title: Text("Book now!"),
-                              message: Text("Continue to the CVS website to book"),
-                              primaryButton: .default(Text("Continue"),
-                                                      action: {
-                                                        self.showingAlert = false
-                                                        if let url = URL(string: Store.cvsCovidQuestionUrl) {
-                                                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                                        }
-                                                      }),
-                              secondaryButton: .cancel({
-                                self.showingAlert = false
-                              })
-                        )
-                })
-                .sheet(isPresented: $showingMap, content: {
-                    StoreMapView(store: item)
                 })
             }
         }
+//        .sheet(item: $selectedMapStore, content: { (mapStore) in
+//            StoreMapView(store: mapStore)
+//        })
+        .alert(isPresented: self.$showingAlert,
+               content: {
+                Alert(title: Text("Book now!"),
+                      message: Text("Continue to the CVS website to book"),
+                      primaryButton: .default(Text("Continue"),
+                                              action: {
+                                                self.showingAlert = false
+                                                if let url = URL(string: Store.cvsCovidQuestionUrl) {
+                                                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                                }
+                                              }),
+                      secondaryButton: .cancel({
+                        self.showingAlert = false
+                      })
+                )
+        })
     }
     
     private func reloadStoreFeed() {
