@@ -22,6 +22,7 @@ final class RiteAidController: ObservableObject {
 //    referer: https://www.riteaid.com/locations/search.html?q=Philadelphia%2C+PA
     
     private static let storeLocatorUrlString = "https://www.riteaid.com/locations/search.html"
+    private static let checkSlotsUrlString = "https://www.riteaid.com/services/ext/v2/vaccine/checkSlots"
     
     private let session: URLSession
     
@@ -36,7 +37,7 @@ final class RiteAidController: ObservableObject {
     }
     
     func getLocation(for query: String) {
-        guard let url = URL(string: "https://www.riteaid.com/locations/search.html"),
+        guard let url = URL(string: RiteAidController.storeLocatorUrlString),
               var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         else {
             return
@@ -62,15 +63,66 @@ final class RiteAidController: ObservableObject {
             .sink { result in
                 switch result {
                 case .finished:
-                    print("Finished Request")
+                    print("Finished Store Response Request")
                 case .failure(let error):
-                    print("Request failed with Error: \(error)")
+                    print("Store Response Request failed with Error: \(error)")
                 }
-            } receiveValue: { response in
+            } receiveValue: { [weak self] response in
+                print("Store Response")
+                self?.requestAvailability(for: response.locations)
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func requestAvailability(for stores: [RiteAidStoreLocation]) {
+        let publishers = stores.map { (store) -> AnyPublisher<String, Error>? in
+            return publisher(for: store.corporateCode)
+        }
+        .compactMap({ $0 })
+        
+        Publishers.MergeMany(publishers)
+            .sink { (result) in
+                switch(result) {
+                case .failure(let error):
+                    print("Failed with Error \(error)")
+                case .finished:
+                    print("Finished")
+                }
+            } receiveValue: { (dummyString) in
+                // TODO: append available stores
                 print("received value")
             }
             .store(in: &cancellables)
+    }
+    
+    private func publisher(for storeId: String) -> AnyPublisher<String, Error>? {
+        guard let url = URL(string: RiteAidController.checkSlotsUrlString),
+              var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else {
+            return nil
+        }
         
+        components.queryItems = [URLQueryItem(name: "storeNumber", value: storeId)]
+        
+        guard let requestUrl = components.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        let publisher = session.dataTaskPublisher(for: request)
+            .tryMap { (result) -> Data in
+                guard let httpResponse = result.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    throw URLError(.badServerResponse)
+                }
+                
+                return result.data
+            }
+            .decode(type: String.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+        
+        return publisher
     }
     
     // view modifier
