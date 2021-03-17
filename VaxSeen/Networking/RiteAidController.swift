@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Combine
 
 
-final class RiteAidController {
+final class RiteAidController: ObservableObject {
     
 //    :method: GET
 //    :scheme: https
@@ -24,6 +25,8 @@ final class RiteAidController {
     
     private let session: URLSession
     
+    private var cancellables: Set<AnyCancellable> = Set()
+    
     init(){
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = ["referer": "https://www.riteaid.com/locations/",
@@ -33,26 +36,40 @@ final class RiteAidController {
     }
     
     func getLocation(for query: String) {
+        guard let url = URL(string: "https://www.riteaid.com/locations/search.html"),
+              var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else {
+            return
+        }
         
-//        guard let url = URL(string: "https://www.cvs.com/immunizations/covid-19-vaccine.vaccine-status." + stateCode + ".json?vaccineinfo") else {
-//            return nil
-//        }
-//        
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        let publisher = session.dataTaskPublisher(for: request)
-//            .tryMap() { element -> Data in
-//                guard let httpResponse = element.response as? HTTPURLResponse,
-//                    httpResponse.statusCode == 200 else {
-//                        throw URLError(.badServerResponse)
-//                    }
-//                
-//                return element.data
-//            }
-//            .decode(type: StoreResponse.self, decoder: JSONDecoder())
-//            .eraseToAnyPublisher()
-//        
-//        return publisher
+        components.queryItems = [URLQueryItem(name: "q", value: query)]
+        guard let searchURL = components.url else { return }
+        var request = URLRequest(url: searchURL)
+        request.httpMethod = "GET"
+        
+        session.dataTaskPublisher(for: request)
+            .tryMap() { element -> Data in
+                guard let httpResponse = element.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200
+                else {
+                    throw URLError(.badServerResponse)
+                }
+                
+                return element.data
+            }
+            .decode(type: RiteAidLocationResponse.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
+            .sink { result in
+                switch result {
+                case .finished:
+                    print("Finished Request")
+                case .failure(let error):
+                    print("Request failed with Error: \(error)")
+                }
+            } receiveValue: { response in
+                print("received value")
+            }
+            .store(in: &cancellables)
         
     }
     

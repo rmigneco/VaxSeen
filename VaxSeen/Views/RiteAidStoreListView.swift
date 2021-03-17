@@ -9,8 +9,13 @@ import SwiftUI
 
 struct RiteAidStoreListView: View {
     
+    @StateObject private var controller = RiteAidController()
+    
     var body: some View {
         Text("Checking Rite Aid....")
+            .onAppear {
+                controller.getLocation(for: "Philadelphia, PA")
+            }
     }
 }
 

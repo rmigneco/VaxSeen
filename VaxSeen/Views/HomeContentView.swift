@@ -29,6 +29,14 @@ struct HomeContentView: View {
                         .cornerRadius(5)
                 }
                 .padding()
+                NavigationLink(destination: RiteAidStoreListView()) {
+                    Text("Rite Aid")
+                        .foregroundColor(Color.red)
+                        .frame(width: 100, height: 60, alignment: .center)
+                        .border(Color.blue, width: 5)
+                        .cornerRadius(5)
+                }
+                .padding()
             })
             .toolbar {
                 Button {
