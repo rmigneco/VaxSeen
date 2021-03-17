@@ -22,7 +22,7 @@
 		C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B0D25F46DB800F430D8 /* CVSView.swift */; };
 		C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B1725F47EAB00F430D8 /* CVSController.swift */; };
 		C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2325F486B700F430D8 /* StoreModels.swift */; };
-		C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */; };
+		C7BB2B2C25F51F9700F430D8 /* CVSStoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +64,7 @@
 		C7BB2B0D25F46DB800F430D8 /* CVSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSView.swift; sourceTree = "<group>"; };
 		C7BB2B1725F47EAB00F430D8 /* CVSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSController.swift; sourceTree = "<group>"; };
 		C7BB2B2325F486B700F430D8 /* StoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModels.swift; sourceTree = "<group>"; };
-		C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListView.swift; sourceTree = "<group>"; };
+		C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSStoreListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,7 +159,7 @@
 				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
 				C7867E4F25F9B21C009E68FA /* StoreMapView.swift */,
 				C78840EC25F852C00039A8AC /* StoreListItemView.swift */,
-				C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */,
+				C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */,
 				C79C01F125FE809900C23F30 /* RegionPickerView.swift */,
 			);
 			path = Views;
@@ -317,7 +317,7 @@
 				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
 				C79C01E425FE56DA00C23F30 /* RegionDataStore.swift in Sources */,
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
-				C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */,
+				C7BB2B2C25F51F9700F430D8 /* CVSStoreListView.swift in Sources */,
 				C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */,
 				C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */,
 				C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */,
