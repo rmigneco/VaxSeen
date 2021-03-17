@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C7011F3426018B4E0095C926 /* RiteAidController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3326018B4D0095C926 /* RiteAidController.swift */; };
+		C7011F3C260234D10095C926 /* RiteAidStoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */; };
 		C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E4F25F9B21C009E68FA /* StoreMapView.swift */; };
 		C7867E5525F9B452009E68FA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E5425F9B452009E68FA /* LocationController.swift */; };
 		C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78840EC25F852C00039A8AC /* StoreListItemView.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		C7011F3326018B4D0095C926 /* RiteAidController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiteAidController.swift; sourceTree = "<group>"; };
+		C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiteAidStoreListView.swift; sourceTree = "<group>"; };
 		C7867E4F25F9B21C009E68FA /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
 		C7867E5425F9B452009E68FA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		C78840EC25F852C00039A8AC /* StoreListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItemView.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				C7867E4F25F9B21C009E68FA /* StoreMapView.swift */,
 				C78840EC25F852C00039A8AC /* StoreListItemView.swift */,
 				C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */,
+				C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */,
 				C79C01F125FE809900C23F30 /* RegionPickerView.swift */,
 			);
 			path = Views;
@@ -325,6 +328,7 @@
 				C7867E5525F9B452009E68FA /* LocationController.swift in Sources */,
 				C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */,
 				C79C01F225FE809900C23F30 /* RegionPickerView.swift in Sources */,
+				C7011F3C260234D10095C926 /* RiteAidStoreListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
