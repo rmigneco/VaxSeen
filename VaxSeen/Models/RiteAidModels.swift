@@ -62,3 +62,40 @@ final class RiteAidStoreLocation: Decodable {
         corporateCode = try container.decode(String.self, forKey: .corporateCode)
     }
 }
+
+
+//{
+//    "Data": {
+//        "slots": {
+//            "1": false,
+//            "2": false
+//        }
+//    },
+//    "Status": "SUCCESS",
+//    "ErrCde": null,
+//    "ErrMsg": null,
+//    "ErrMsgDtl": null
+//}
+struct RiteAidStoreAvailability: Decodable {
+    
+    enum Keys: String, CodingKey {
+        case data = "Data"
+    }
+    
+    enum SlotKeys: String, CodingKey {
+        case slots
+    }
+    
+    enum AppointmentKeys: String, CodingKey {
+        case first = "1"
+    }
+    
+    let hasAppointments: Bool
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        let slotsContainer = try container.nestedContainer(keyedBy: SlotKeys.self, forKey: .data)
+        let appointmentsContainer = try slotsContainer.nestedContainer(keyedBy: AppointmentKeys.self, forKey: .slots)
+        hasAppointments = try appointmentsContainer.decode(Bool.self, forKey: .first)
+    }
+}

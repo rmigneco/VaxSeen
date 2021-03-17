@@ -11,16 +11,6 @@ import Combine
 
 final class RiteAidController: ObservableObject {
     
-//    :method: GET
-//    :scheme: https
-//    :path: /locations/search.html?q=Philadelphia%2C+PA
-//    :authority: www.riteaid.com
-//    accept: application/json
-//    accept-encoding: gzip, deflate, br
-//    user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Safari/605.1.15
-//    accept-language: en-us
-//    referer: https://www.riteaid.com/locations/search.html?q=Philadelphia%2C+PA
-    
     private static let storeLocatorUrlString = "https://www.riteaid.com/locations/search.html"
     private static let checkSlotsUrlString = "https://www.riteaid.com/services/ext/v2/vaccine/checkSlots"
     
@@ -75,42 +65,45 @@ final class RiteAidController: ObservableObject {
     }
     
     private func requestAvailability(for stores: [RiteAidStoreLocation]) {
-        let publishers = stores.map { (store) -> AnyPublisher<String, Error>? in
-            return publisher(for: store.corporateCode)
-        }
-        .compactMap({ $0 })
         
-        Publishers.MergeMany(publishers)
-            .sink { (result) in
-                switch(result) {
-                case .failure(let error):
-                    print("Failed with Error \(error)")
-                case .finished:
-                    print("Finished")
+        let dispatchGroup = DispatchGroup()
+        var tempStores = [RiteAidStoreLocation]()
+        
+        for store in stores {
+            dispatchGroup.enter()
+            checkAvailability(for: store) { (available) in
+                if available {
+                    store.hasAppointments = true
+                    tempStores.append(store)
                 }
-            } receiveValue: { (dummyString) in
-                // TODO: append available stores
-                print("received value")
+                dispatchGroup.leave()
             }
-            .store(in: &cancellables)
+        }
+         
+        dispatchGroup.notify(qos: .userInitiated, queue: .main) {
+            print("\(tempStores.count) stores with avail")
+        }
     }
     
-    private func publisher(for storeId: String) -> AnyPublisher<String, Error>? {
+    private func checkAvailability(for store: RiteAidStoreLocation, completion: @escaping (Bool) -> Void) {
         guard let url = URL(string: RiteAidController.checkSlotsUrlString),
               var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         else {
-            return nil
+            completion(false)
+            
+            return
         }
         
-        components.queryItems = [URLQueryItem(name: "storeNumber", value: storeId)]
-        
+        components.queryItems = [URLQueryItem(name: "storeNumber", value: store.corporateCode)]
         guard let requestUrl = components.url else {
-            return nil
+            completion(false)
+            
+            return
         }
         
         var request = URLRequest(url: requestUrl)
         request.httpMethod = "GET"
-        let publisher = session.dataTaskPublisher(for: request)
+        session.dataTaskPublisher(for: request)
             .tryMap { (result) -> Data in
                 guard let httpResponse = result.response as? HTTPURLResponse,
                       httpResponse.statusCode == 200 else {
@@ -119,10 +112,19 @@ final class RiteAidController: ObservableObject {
                 
                 return result.data
             }
-            .decode(type: String.self, decoder: JSONDecoder())
-            .eraseToAnyPublisher()
-        
-        return publisher
+            .decode(type: RiteAidStoreAvailability.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { (result) in
+                switch(result) {
+                case .failure(let error):
+                    print("Store Avail request failed: Error \(error)")
+                    completion(false)
+                case .finished:
+                    print("Finished Store Avail request")
+                }
+            }, receiveValue: { (result) in
+                completion(result.hasAppointments)
+            })
+            .store(in: &cancellables)
     }
     
     // view modifier
