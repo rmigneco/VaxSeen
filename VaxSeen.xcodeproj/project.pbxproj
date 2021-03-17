@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7011F3426018B4E0095C926 /* RiteAidController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3326018B4D0095C926 /* RiteAidController.swift */; };
 		C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E4F25F9B21C009E68FA /* StoreMapView.swift */; };
 		C7867E5525F9B452009E68FA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E5425F9B452009E68FA /* LocationController.swift */; };
 		C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78840EC25F852C00039A8AC /* StoreListItemView.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C7011F3326018B4D0095C926 /* RiteAidController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiteAidController.swift; sourceTree = "<group>"; };
 		C7867E4F25F9B21C009E68FA /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
 		C7867E5425F9B452009E68FA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		C78840EC25F852C00039A8AC /* StoreListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItemView.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		C7BB2B1625F4765A00F430D8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				C7011F3326018B4D0095C926 /* RiteAidController.swift */,
 				C7BB2B1725F47EAB00F430D8 /* CVSController.swift */,
 				C7867E5425F9B452009E68FA /* LocationController.swift */,
 			);
@@ -310,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7011F3426018B4E0095C926 /* RiteAidController.swift in Sources */,
 				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
 				C79C01E425FE56DA00C23F30 /* RegionDataStore.swift in Sources */,
 				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
