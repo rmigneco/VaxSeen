@@ -37,10 +37,28 @@ struct RiteAidLocationResponse: Decodable {
 }
 
 
-struct RiteAidStoreLocation:Decodable {
+final class RiteAidStoreLocation: Decodable {
+    
+    enum Keys: String, CodingKey {
+        case address1
+        case city
+        case state
+        case corporateCode
+    }
     
     let address1: String
     let city: String
     let state: String
     let corporateCode: String
+    
+    var hasAppointments = false
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        
+        address1 = try container.decode(String.self, forKey: .address1)
+        city = try container.decode(String.self, forKey: .city)
+        state = try container.decode(String.self, forKey: .state)
+        corporateCode = try container.decode(String.self, forKey: .corporateCode)
+    }
 }
