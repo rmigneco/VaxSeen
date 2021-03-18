@@ -39,6 +39,8 @@ struct RiteAidLocationResponse: Decodable {
 
 final class RiteAidStoreLocation: Decodable, Identifiable {
     
+    static let scheduleURLString = "https://www.riteaid.com/covid-19"
+    
     enum Keys: String, CodingKey {
         case address1
         case city

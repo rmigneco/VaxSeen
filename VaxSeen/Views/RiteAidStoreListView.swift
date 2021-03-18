@@ -12,6 +12,7 @@ struct RiteAidStoreListView: View {
     @StateObject private var controller = RiteAidController()
     
     @State private var queryText: String = ""
+    @State private var showingAlert = false
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
@@ -26,7 +27,9 @@ struct RiteAidStoreListView: View {
                 .disableAutocorrection(true)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(20)
+            Spacer()
             contentPlaceView
+            Spacer()
         }
         .navigationTitle("Availability")
         .navigationBarTitleDisplayMode(.inline)
@@ -60,7 +63,7 @@ struct RiteAidStoreListView: View {
     private var storesView: some View {
         List(controller.vaxStores) { (item) in
             Button(action: {
-//                self.showingAlert.toggle()
+                self.showingAlert.toggle()
             },
             label: {
                 StoreListItemView(storeItem: item) {
@@ -68,6 +71,21 @@ struct RiteAidStoreListView: View {
 //                    activeSheet = .mapView
                 }
             })
+        }
+        .alert(isPresented: self.$showingAlert) {
+            Alert(title: Text("Book now!"),
+                  message: Text("Continue to the RiteAid website to book"),
+                  primaryButton: .default(Text("Continue"),
+                                          action: {
+                                            self.showingAlert = false
+                                            if let url = URL(string: RiteAidStoreLocation.scheduleURLString) {
+                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                            }
+                                          }),
+                  secondaryButton: .cancel({
+                    self.showingAlert = false
+                  })
+            )
         }
     }
     

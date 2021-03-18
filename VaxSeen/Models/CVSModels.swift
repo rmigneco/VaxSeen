@@ -54,7 +54,7 @@ struct CVSStoreResponse: Decodable {
 
 struct CVSStoreLocation: Decodable, Identifiable {
     
-    static let cvsCovidQuestionUrl = "https://www.cvs.com/vaccine/intake/store/covid-screener/covid-qns"
+    static let cvsCovidQuestionUrl = "https://www.cvs.com/immunizations/covid-19-vaccine?icid=cvs-home-hero1-link2-coronavirus-vaccine"
     
     enum Keys: String, CodingKey {
         case city
