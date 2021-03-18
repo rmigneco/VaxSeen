@@ -1,5 +1,5 @@
 //
-//  StoreModels.swift
+//  CVSModels.swift
 //  VaxSeen
 //
 //  Created by Ray Migneco on 3/6/21.
@@ -21,7 +21,7 @@ fileprivate struct DynamicCodingKey: CodingKey {
     }
 }
 
-struct StoreResponse: Decodable {
+struct CVSStoreResponse: Decodable {
     
     enum Keys: String, CodingKey {
         case responsePayloadData
@@ -31,7 +31,7 @@ struct StoreResponse: Decodable {
         case data
     }
     
-    let stores: [Store]
+    let stores: [CVSStoreLocation]
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
@@ -39,11 +39,11 @@ struct StoreResponse: Decodable {
         let nestedContainer = try container.nestedContainer(keyedBy: DataKeys.self, forKey: .responsePayloadData)
         let statesContainer = try nestedContainer.nestedContainer(keyedBy: DynamicCodingKey.self, forKey: .data)
         
-        var tempStores = [Store]()
+        var tempStores = [CVSStoreLocation]()
         
         for key in statesContainer.allKeys {
             if let codingKey = DynamicCodingKey(stringValue: key.stringValue) {
-                let stores = try statesContainer.decode([Store].self, forKey: codingKey)
+                let stores = try statesContainer.decode([CVSStoreLocation].self, forKey: codingKey)
                 tempStores.append(contentsOf: stores)
             }
         }
@@ -52,9 +52,9 @@ struct StoreResponse: Decodable {
     }
 }
 
-struct Store: Decodable, Identifiable {
+struct CVSStoreLocation: Decodable, Identifiable {
     
-    static let cvsCovidQuestionUrl = "https://www.cvs.com/vaccine/intake/store/covid-screener/covid-qns"
+    static let cvsCovidQuestionUrl = "https://www.cvs.com/immunizations/covid-19-vaccine?icid=cvs-home-hero1-link2-coronavirus-vaccine"
     
     enum Keys: String, CodingKey {
         case city
@@ -85,24 +85,33 @@ struct Store: Decodable, Identifiable {
         self.status = status
     }
     
-    static let testStore = Store(city: "Philadelphia", state: "PA", status: "Available")
+    static let testStore = CVSStoreLocation(city: "Philadelphia", state: "PA", status: "Available")
 }
 
-extension Store {
+extension CVSStoreLocation {
     
     var hasAppointments: Bool {
         return status == "Available"
     }
 }
 
-extension Store: StoreIdentifiable {
+extension CVSStoreLocation: StoreIdentifiable {
     
+    var titleDescription: String {
+        return "CVS \(city)"
+    }
+    
+    var detailDescription: String {
+        return "\(city), \(state)"
+    }    
 }
 
-
-protocol StoreIdentifiable: Identifiable {
+extension CVSStoreLocation: StoreLocatable {
+    var locationType: LocationType {
+        LocationType.cityRegion(city: city, region: state)
+    }
     
-    var hasAppointments: Bool { get }
-    var city: String { get }
-    var state: String { get }
+    var description: String {
+        return titleDescription
+    }
 }

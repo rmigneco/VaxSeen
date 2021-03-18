@@ -22,7 +22,7 @@ final class CVSController: ObservableObject {
     
     private let onlyShowAvailableAppointments = true
     
-    @Published var stores = [Store]()
+    @Published var stores = [CVSStoreLocation]()
     @Published var isFetchingStores = false
     
     init() {
@@ -37,7 +37,7 @@ final class CVSController: ObservableObject {
         
         guard !regionCodes.isEmpty else { return }
         
-        let publishers = regionCodes.map { (code) -> AnyPublisher<StoreResponse, Error>? in
+        let publishers = regionCodes.map { (code) -> AnyPublisher<CVSStoreResponse, Error>? in
             generatePublisher(for: code)
         }.compactMap({$0})
         
@@ -61,7 +61,7 @@ final class CVSController: ObservableObject {
 
     }
     
-    private func generatePublisher(for stateCode: String) -> AnyPublisher<StoreResponse, Error>? {
+    private func generatePublisher(for stateCode: String) -> AnyPublisher<CVSStoreResponse, Error>? {
         guard let url = URL(string: "https://www.cvs.com/immunizations/covid-19-vaccine.vaccine-status." + stateCode + ".json?vaccineinfo") else {
             return nil
         }
@@ -77,7 +77,7 @@ final class CVSController: ObservableObject {
                 
                 return element.data
             }
-            .decode(type: StoreResponse.self, decoder: JSONDecoder())
+            .decode(type: CVSStoreResponse.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
         
         return publisher

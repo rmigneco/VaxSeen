@@ -39,17 +39,23 @@ struct RiteAidLocationResponse: Decodable {
 
 final class RiteAidStoreLocation: Decodable, Identifiable {
     
+    static let scheduleURLString = "https://www.riteaid.com/covid-19"
+    
     enum Keys: String, CodingKey {
         case address1
         case city
         case state
         case corporateCode
+        case latitude
+        case longitude
     }
     
     let address1: String
     let city: String
     let state: String
     let corporateCode: String
+    let latitude: Double
+    let longitude: Double
     
     var hasAppointments = false
     
@@ -60,6 +66,8 @@ final class RiteAidStoreLocation: Decodable, Identifiable {
         city = try container.decode(String.self, forKey: .city)
         state = try container.decode(String.self, forKey: .state)
         corporateCode = try container.decode(String.self, forKey: .corporateCode)
+        latitude = try container.decode(Double.self, forKey: .latitude)
+        longitude = try container.decode(Double.self, forKey: .longitude)
     }
     
     var id: String {
@@ -67,7 +75,25 @@ final class RiteAidStoreLocation: Decodable, Identifiable {
     }
 }
 
-extension RiteAidStoreLocation: StoreIdentifiable { }
+extension RiteAidStoreLocation: StoreIdentifiable {
+    var titleDescription: String {
+        return "RiteAid Store #\(corporateCode)"
+    }
+    
+    var detailDescription: String {
+        return "\(address1) \(city), \(state)"
+    }
+}
+
+extension RiteAidStoreLocation: StoreLocatable {
+    var locationType: LocationType {
+        return .coordinates(latitude: latitude, longitude: longitude)
+    }
+    
+    var description: String {
+        return titleDescription
+    }
+}
 
 
 //{

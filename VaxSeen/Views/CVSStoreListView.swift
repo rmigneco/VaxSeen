@@ -23,7 +23,7 @@ struct CVSStoreListView: View {
     @ObservedObject var storeFeed = CVSController()
     @State private var showingAlert = false
     @State private var showingRegionSettings = false
-    @State private var selectedMapStore: Store? = nil
+    @State private var selectedMapStore: CVSStoreLocation? = nil
     @State private var activeSheet: ActiveSheet?
     
     var body: some View {
@@ -124,7 +124,7 @@ struct CVSStoreListView: View {
                       primaryButton: .default(Text("Continue"),
                                               action: {
                                                 self.showingAlert = false
-                                                if let url = URL(string: Store.cvsCovidQuestionUrl) {
+                                                if let url = URL(string: CVSStoreLocation.cvsCovidQuestionUrl) {
                                                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                                                 }
                                               }),
