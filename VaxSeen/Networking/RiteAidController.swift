@@ -66,23 +66,44 @@ final class RiteAidController: ObservableObject {
     
     private func requestAvailability(for stores: [RiteAidStoreLocation]) {
         
-        let dispatchGroup = DispatchGroup()
-        var tempStores = [RiteAidStoreLocation]()
+        // may be a more elegant way of doing this
+        // https://stackoverflow.com/questions/66320320/swift-combine-sink-array-anypublisher
+        // might need to look at publisher type as AnyPublisher<Result<StoreLocation, Error>, Never>
         
-        for store in stores {
-            dispatchGroup.enter()
-            checkAvailability(for: store) { (available) in
-                if available {
-                    store.hasAppointments = true
-                    tempStores.append(store)
+        let publishers = stores.map({ publisher(for: $0)}).compactMap({ $0 })
+        
+        Publishers.MergeMany(publishers)
+            .receive(on: DispatchQueue.main)
+            .sink { (result) in
+                switch(result) {
+                case .finished:
+                    print("Finished")
+                case .failure(let error):
+                    print("Finished with Error: \(error)")
                 }
-                dispatchGroup.leave()
+            } receiveValue: { (value) in
+                print("Received value: \(value)")
             }
-        }
-         
-        dispatchGroup.notify(qos: .userInitiated, queue: .main) {
-            print("\(tempStores.count) stores with avail")
-        }
+            .store(in: &cancellables)
+        
+        // old school way of doing it
+//        let dispatchGroup = DispatchGroup()
+//        var tempStores = [RiteAidStoreLocation]()
+//
+//        for store in stores {
+//            dispatchGroup.enter()
+//            checkAvailability(for: store) { (available) in
+//                if available {
+//                    store.hasAppointments = true
+//                    tempStores.append(store)
+//                }
+//                dispatchGroup.leave()
+//            }
+//        }
+//
+//        dispatchGroup.notify(qos: .userInitiated, queue: .main) {
+//            print("\(tempStores.count) stores with avail")
+//        }
     }
     
     private func checkAvailability(for store: RiteAidStoreLocation, completion: @escaping (Bool) -> Void) {
@@ -125,6 +146,40 @@ final class RiteAidController: ObservableObject {
                 completion(result.hasAppointments)
             })
             .store(in: &cancellables)
+    }
+    
+    private func publisher(for store: RiteAidStoreLocation) -> AnyPublisher<RiteAidStoreLocation, Error>? {
+        guard let url = URL(string: RiteAidController.checkSlotsUrlString),
+              var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        else {
+            return nil
+        }
+        
+        components.queryItems = [URLQueryItem(name: "storeNumber", value: store.corporateCode)]
+        guard let requestUrl = components.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: requestUrl)
+        request.httpMethod = "GET"
+        let publisher = session.dataTaskPublisher(for: request)
+            .tryMap { (result) -> Data in
+                guard let httpResponse = result.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    throw URLError(.badServerResponse)
+                }
+                
+                return result.data
+            }
+            .decode(type: RiteAidStoreAvailability.self, decoder: JSONDecoder())
+            .map({ (availability) -> RiteAidStoreLocation in
+                store.hasAppointments = availability.hasAppointments
+                
+                return store
+            })
+            .eraseToAnyPublisher()
+        
+        return publisher
     }
     
     // view modifier

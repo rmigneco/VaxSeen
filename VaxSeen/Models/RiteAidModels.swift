@@ -94,8 +94,14 @@ struct RiteAidStoreAvailability: Decodable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: Keys.self)
-        let slotsContainer = try container.nestedContainer(keyedBy: SlotKeys.self, forKey: .data)
-        let appointmentsContainer = try slotsContainer.nestedContainer(keyedBy: AppointmentKeys.self, forKey: .slots)
-        hasAppointments = try appointmentsContainer.decode(Bool.self, forKey: .first)
+        // weirdly enough, .data is missing if the request fails
+        if let slotsContainer = try? container.nestedContainer(keyedBy: SlotKeys.self, forKey: .data) {
+            let appointmentsContainer = try slotsContainer.nestedContainer(keyedBy: AppointmentKeys.self, forKey: .slots)
+            hasAppointments = try appointmentsContainer.decode(Bool.self, forKey: .first)
+        }
+        else {
+            hasAppointments = false
+        }
+
     }
 }
