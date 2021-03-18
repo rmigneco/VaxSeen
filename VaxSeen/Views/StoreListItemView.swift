@@ -15,9 +15,9 @@ struct StoreListItemView<T: StoreIdentifiable>: View {
     var body: some View {
         HStack(alignment: .center, spacing: 10, content: {
             VStack(alignment: .leading, spacing: 10, content: {
-                Text(storeItem.hasAppointments ? "Appointments Available!" : "No Availability")
+                Text(storeItem.titleDescription)
                     .font(.title2)
-                Text("\(storeItem.city), \(storeItem.state)")
+                Text(storeItem.detailDescription)
                     .font(.body)
             })
             Spacer(minLength: 5)

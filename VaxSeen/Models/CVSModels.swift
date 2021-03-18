@@ -95,12 +95,13 @@ extension CVSStoreLocation {
     }
 }
 
-extension CVSStoreLocation: StoreIdentifiable { }
-
-
-protocol StoreIdentifiable: Identifiable {
+extension CVSStoreLocation: StoreIdentifiable {
     
-    var hasAppointments: Bool { get }
-    var city: String { get }
-    var state: String { get }
+    var titleDescription: String {
+        return "CVS \(city)"
+    }
+    
+    var detailDescription: String {
+        return "\(city), \(state)"
+    }    
 }

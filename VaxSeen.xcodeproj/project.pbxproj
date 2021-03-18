@@ -10,6 +10,7 @@
 		C7011F3426018B4E0095C926 /* RiteAidController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3326018B4D0095C926 /* RiteAidController.swift */; };
 		C7011F3C260234D10095C926 /* RiteAidStoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */; };
 		C7011F4A26025E260095C926 /* RiteAidModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F4926025E260095C926 /* RiteAidModels.swift */; };
+		C7011F522603825A0095C926 /* StoreIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F512603825A0095C926 /* StoreIdentifiable.swift */; };
 		C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E4F25F9B21C009E68FA /* StoreMapView.swift */; };
 		C7867E5525F9B452009E68FA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E5425F9B452009E68FA /* LocationController.swift */; };
 		C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78840EC25F852C00039A8AC /* StoreListItemView.swift */; };
@@ -47,6 +48,7 @@
 		C7011F3326018B4D0095C926 /* RiteAidController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiteAidController.swift; sourceTree = "<group>"; };
 		C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiteAidStoreListView.swift; sourceTree = "<group>"; };
 		C7011F4926025E260095C926 /* RiteAidModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiteAidModels.swift; sourceTree = "<group>"; };
+		C7011F512603825A0095C926 /* StoreIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreIdentifiable.swift; sourceTree = "<group>"; };
 		C7867E4F25F9B21C009E68FA /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
 		C7867E5425F9B452009E68FA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		C78840EC25F852C00039A8AC /* StoreListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItemView.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				C7BB2B2325F486B700F430D8 /* CVSModels.swift */,
 				C79C01E325FE56DA00C23F30 /* RegionDataStore.swift */,
 				C7011F4926025E260095C926 /* RiteAidModels.swift */,
+				C7011F512603825A0095C926 /* StoreIdentifiable.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				C7867E5525F9B452009E68FA /* LocationController.swift in Sources */,
 				C79C01F225FE809900C23F30 /* RegionPickerView.swift in Sources */,
 				C7011F3C260234D10095C926 /* RiteAidStoreListView.swift in Sources */,
+				C7011F522603825A0095C926 /* StoreIdentifiable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
