@@ -17,6 +17,9 @@ struct RiteAidStoreListView: View {
                 controller.getLocation(for: "Philadelphia, PA")
             }
     }
+    
+    // view modifier
+    // https://www.hackingwithswift.com/quick-start/swiftui/how-to-run-some-code-when-state-changes-using-onchange
 }
 
 struct RiteAidStoreListView_Previews: PreviewProvider {

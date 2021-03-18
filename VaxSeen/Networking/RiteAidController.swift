@@ -106,47 +106,49 @@ final class RiteAidController: ObservableObject {
 //        }
     }
     
-    private func checkAvailability(for store: RiteAidStoreLocation, completion: @escaping (Bool) -> Void) {
-        guard let url = URL(string: RiteAidController.checkSlotsUrlString),
-              var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        else {
-            completion(false)
-            
-            return
-        }
-        
-        components.queryItems = [URLQueryItem(name: "storeNumber", value: store.corporateCode)]
-        guard let requestUrl = components.url else {
-            completion(false)
-            
-            return
-        }
-        
-        var request = URLRequest(url: requestUrl)
-        request.httpMethod = "GET"
-        session.dataTaskPublisher(for: request)
-            .tryMap { (result) -> Data in
-                guard let httpResponse = result.response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200 else {
-                    throw URLError(.badServerResponse)
-                }
-                
-                return result.data
-            }
-            .decode(type: RiteAidStoreAvailability.self, decoder: JSONDecoder())
-            .sink(receiveCompletion: { (result) in
-                switch(result) {
-                case .failure(let error):
-                    print("Store Avail request failed: Error \(error)")
-                    completion(false)
-                case .finished:
-                    print("Finished Store Avail request")
-                }
-            }, receiveValue: { (result) in
-                completion(result.hasAppointments)
-            })
-            .store(in: &cancellables)
-    }
+    // TODO: delete this when things are more stable 
+    
+//    private func checkAvailability(for store: RiteAidStoreLocation, completion: @escaping (Bool) -> Void) {
+//        guard let url = URL(string: RiteAidController.checkSlotsUrlString),
+//              var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
+//        else {
+//            completion(false)
+//
+//            return
+//        }
+//
+//        components.queryItems = [URLQueryItem(name: "storeNumber", value: store.corporateCode)]
+//        guard let requestUrl = components.url else {
+//            completion(false)
+//
+//            return
+//        }
+//
+//        var request = URLRequest(url: requestUrl)
+//        request.httpMethod = "GET"
+//        session.dataTaskPublisher(for: request)
+//            .tryMap { (result) -> Data in
+//                guard let httpResponse = result.response as? HTTPURLResponse,
+//                      httpResponse.statusCode == 200 else {
+//                    throw URLError(.badServerResponse)
+//                }
+//
+//                return result.data
+//            }
+//            .decode(type: RiteAidStoreAvailability.self, decoder: JSONDecoder())
+//            .sink(receiveCompletion: { (result) in
+//                switch(result) {
+//                case .failure(let error):
+//                    print("Store Avail request failed: Error \(error)")
+//                    completion(false)
+//                case .finished:
+//                    print("Finished Store Avail request")
+//                }
+//            }, receiveValue: { (result) in
+//                completion(result.hasAppointments)
+//            })
+//            .store(in: &cancellables)
+//    }
     
     private func publisher(for store: RiteAidStoreLocation) -> AnyPublisher<RiteAidStoreLocation, Error>? {
         guard let url = URL(string: RiteAidController.checkSlotsUrlString),
@@ -181,7 +183,4 @@ final class RiteAidController: ObservableObject {
         
         return publisher
     }
-    
-    // view modifier
-    // https://www.hackingwithswift.com/quick-start/swiftui/how-to-run-some-code-when-state-changes-using-onchange
 }
