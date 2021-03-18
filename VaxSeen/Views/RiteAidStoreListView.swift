@@ -13,6 +13,7 @@ struct RiteAidStoreListView: View {
     
     @State private var queryText: String = ""
     @State private var showingAlert = false
+    @State private var selectedMapForStore: RiteAidStoreLocation?
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
@@ -33,6 +34,26 @@ struct RiteAidStoreListView: View {
         }
         .navigationTitle("Availability")
         .navigationBarTitleDisplayMode(.inline)
+        .alert(isPresented: self.$showingAlert) {
+            Alert(title: Text("Book now!"),
+                  message: Text("Continue to the RiteAid website to book"),
+                  primaryButton: .default(Text("Continue"),
+                                          action: {
+                                            self.showingAlert = false
+                                            if let url = URL(string: RiteAidStoreLocation.scheduleURLString) {
+                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                            }
+                                          }),
+                  secondaryButton: .cancel({
+                    self.showingAlert = false
+                  })
+            )
+        }
+        .sheet(item: self.$selectedMapForStore) { (selectedMap) in
+            if let selected = selectedMap {
+                StoreMapView(store: selected)
+            }
+        }
     }
     
     @ViewBuilder private var contentPlaceView: some View {
@@ -67,25 +88,9 @@ struct RiteAidStoreListView: View {
             },
             label: {
                 StoreListItemView(storeItem: item) {
-//                    selectedMapStore = item
-//                    activeSheet = .mapView
+                    selectedMapForStore = item
                 }
             })
-        }
-        .alert(isPresented: self.$showingAlert) {
-            Alert(title: Text("Book now!"),
-                  message: Text("Continue to the RiteAid website to book"),
-                  primaryButton: .default(Text("Continue"),
-                                          action: {
-                                            self.showingAlert = false
-                                            if let url = URL(string: RiteAidStoreLocation.scheduleURLString) {
-                                                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                                            }
-                                          }),
-                  secondaryButton: .cancel({
-                    self.showingAlert = false
-                  })
-            )
         }
     }
     

@@ -83,7 +83,16 @@ extension RiteAidStoreLocation: StoreIdentifiable {
     var detailDescription: String {
         return "\(address1) \(city), \(state)"
     }
+}
+
+extension RiteAidStoreLocation: StoreLocatable {
+    var locationType: LocationType {
+        return .coordinates(latitude: latitude, longitude: longitude)
+    }
     
+    var description: String {
+        return titleDescription
+    }
 }
 
 

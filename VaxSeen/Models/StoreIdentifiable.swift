@@ -17,3 +17,15 @@ protocol StoreIdentifiable: Identifiable {
     var titleDescription: String { get }
     var detailDescription: String { get }
 }
+
+
+protocol StoreLocatable {
+    
+    var locationType: LocationType { get }
+    var description: String { get }
+}
+
+enum LocationType {
+    case coordinates(latitude: Double, longitude: Double)
+    case cityRegion(city: String, region: String)
+}

@@ -105,3 +105,13 @@ extension CVSStoreLocation: StoreIdentifiable {
         return "\(city), \(state)"
     }    
 }
+
+extension CVSStoreLocation: StoreLocatable {
+    var locationType: LocationType {
+        LocationType.cityRegion(city: city, region: state)
+    }
+    
+    var description: String {
+        return titleDescription
+    }
+}
