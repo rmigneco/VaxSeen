@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StoreListItemView<T: StoreIdentifiable>: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     let storeItem: T
     let directionsHandler: () -> Void
     
@@ -26,7 +28,7 @@ struct StoreListItemView<T: StoreIdentifiable>: View {
                 label: {
                     Image(systemName: "map")
                         .font(.largeTitle)
-                        .foregroundColor(.black)
+                        .foregroundColor(.blue)
                 }
             )
             .onTapGesture {
