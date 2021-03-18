@@ -39,7 +39,7 @@ struct StoreListItemView<T: StoreIdentifiable>: View {
 
 struct StoreListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreListItemView(storeItem: Store.testStore) {
+        StoreListItemView(storeItem: CVSStoreLocation.testStore) {
             /* no op */
         }
     }

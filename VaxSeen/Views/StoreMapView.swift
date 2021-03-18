@@ -15,7 +15,7 @@ struct StoreMapView: View {
     
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude:30, longitude: 40), span: MKCoordinateSpan(latitudeDelta: 0.5, longitudeDelta: 0.5))
     
-    let store: Store
+    let store: CVSStoreLocation
     
     var body: some View {
         NavigationView {
@@ -38,6 +38,6 @@ struct StoreMapView: View {
 
 struct StoreMapView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreMapView(store: Store.testStore)
+        StoreMapView(store: CVSStoreLocation.testStore)
     }
 }
