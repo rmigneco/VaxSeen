@@ -95,6 +95,10 @@ extension Store {
     }
 }
 
+extension Store: StoreIdentifiable {
+    
+}
+
 
 protocol StoreIdentifiable: Identifiable {
     

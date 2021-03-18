@@ -67,6 +67,8 @@ final class RiteAidStoreLocation: Decodable, Identifiable {
     }
 }
 
+extension RiteAidStoreLocation: StoreIdentifiable { }
+
 
 //{
 //    "Data": {

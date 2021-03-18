@@ -15,7 +15,7 @@ struct RiteAidStoreListView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 5) {
-            TextField("Enter your location",
+            TextField("Enter your location (e.g. New York or 16801)",
                       text: $queryText,
                       onEditingChanged: { isEditing in
                         // isEditing = true when user begins editing text
@@ -26,8 +26,10 @@ struct RiteAidStoreListView: View {
                 .disableAutocorrection(true)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(20)
+            contentPlaceView
         }
         .navigationTitle("Availability")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     @ViewBuilder private var contentPlaceView: some View {
@@ -38,14 +40,21 @@ struct RiteAidStoreListView: View {
             emptyView
         }
         else {
-            Spacer()
+            storesView
         }
     }
     
     private var emptyView: some View {
-        Text("It doesn't look like there's any appointments near \(queryText). Please try again.")
-            .font(.body)
-            .multilineTextAlignment(.center)
+        VStack(alignment: .center, spacing: 5) {
+            Text("No Appointments!")
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .padding(EdgeInsets(top: 20, leading: 20, bottom: 0, trailing: 20))
+            Text("Enter a location to find appointments")
+                .font(.body)
+                .multilineTextAlignment(.center)
+                .padding(20)
+        }
     }
     
     private var storesView: some View {
@@ -55,8 +64,8 @@ struct RiteAidStoreListView: View {
             },
             label: {
                 StoreListItemView(storeItem: item) {
-                    selectedMapStore = item
-                    activeSheet = .mapView
+//                    selectedMapStore = item
+//                    activeSheet = .mapView
                 }
             })
         }

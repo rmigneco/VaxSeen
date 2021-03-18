@@ -52,6 +52,7 @@ final class RiteAidController: ObservableObject {
                 return element.data
             }
             .decode(type: RiteAidLocationResponse.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
             .sink { result in
                 switch result {
@@ -89,7 +90,9 @@ final class RiteAidController: ObservableObject {
                 }
                 self?.isFetchingStores = false
             } receiveValue: { [weak self] (value) in
-                self?.vaxStores.append(value)
+                if value.hasAppointments {
+                    self?.vaxStores.append(value)
+                }
                 print("Received value: \(value)")
             }
             .store(in: &cancellables)
