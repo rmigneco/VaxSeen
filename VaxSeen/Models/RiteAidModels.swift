@@ -37,7 +37,7 @@ struct RiteAidLocationResponse: Decodable {
 }
 
 
-final class RiteAidStoreLocation: Decodable {
+final class RiteAidStoreLocation: Decodable, Identifiable {
     
     enum Keys: String, CodingKey {
         case address1
@@ -60,6 +60,10 @@ final class RiteAidStoreLocation: Decodable {
         city = try container.decode(String.self, forKey: .city)
         state = try container.decode(String.self, forKey: .state)
         corporateCode = try container.decode(String.self, forKey: .corporateCode)
+    }
+    
+    var id: String {
+        return corporateCode
     }
 }
 

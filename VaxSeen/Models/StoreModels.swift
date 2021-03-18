@@ -94,3 +94,11 @@ extension Store {
         return status == "Available"
     }
 }
+
+
+protocol StoreIdentifiable: Identifiable {
+    
+    var hasAppointments: Bool { get }
+    var city: String { get }
+    var state: String { get }
+}

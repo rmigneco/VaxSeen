@@ -18,6 +18,9 @@ final class RiteAidController: ObservableObject {
     
     private var cancellables: Set<AnyCancellable> = Set()
     
+    @Published private(set) var vaxStores = [RiteAidStoreLocation]()
+    @Published private(set) var isFetchingStores = false
+    
     init(){
         let config = URLSessionConfiguration.default
         config.httpAdditionalHeaders = ["referer": "https://www.riteaid.com/locations/",
@@ -72,16 +75,21 @@ final class RiteAidController: ObservableObject {
         
         let publishers = stores.map({ publisher(for: $0)}).compactMap({ $0 })
         
+        isFetchingStores = true
+        vaxStores.removeAll()
+        
         Publishers.MergeMany(publishers)
             .receive(on: DispatchQueue.main)
-            .sink { (result) in
+            .sink { [weak self] (result) in
                 switch(result) {
                 case .finished:
                     print("Finished")
                 case .failure(let error):
                     print("Finished with Error: \(error)")
                 }
-            } receiveValue: { (value) in
+                self?.isFetchingStores = false
+            } receiveValue: { [weak self] (value) in
+                self?.vaxStores.append(value)
                 print("Received value: \(value)")
             }
             .store(in: &cancellables)
