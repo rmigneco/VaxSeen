@@ -1,5 +1,5 @@
 //
-//  StoreLIstView.swift
+//  CVSStoreListView.swift
 //  VaxSeen
 //
 //  Created by Ray Migneco on 3/7/21.
@@ -16,7 +16,7 @@ fileprivate enum ActiveSheet: Identifiable {
     }
 }
 
-struct StoreListView: View {
+struct CVSStoreListView: View {
     
     @EnvironmentObject var userRegionStore: RegionDataStore
     
@@ -144,6 +144,6 @@ struct StoreListView: View {
 
 struct StoreListView_Previews: PreviewProvider {
     static var previews: some View {
-        StoreListView()
+        CVSStoreListView()
     }
 }

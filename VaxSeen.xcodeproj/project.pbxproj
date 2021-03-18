@@ -7,21 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7011F3426018B4E0095C926 /* RiteAidController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3326018B4D0095C926 /* RiteAidController.swift */; };
+		C7011F3C260234D10095C926 /* RiteAidStoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */; };
+		C7011F4A26025E260095C926 /* RiteAidModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7011F4926025E260095C926 /* RiteAidModels.swift */; };
 		C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E4F25F9B21C009E68FA /* StoreMapView.swift */; };
 		C7867E5525F9B452009E68FA /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7867E5425F9B452009E68FA /* LocationController.swift */; };
 		C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78840EC25F852C00039A8AC /* StoreListItemView.swift */; };
 		C79C01E425FE56DA00C23F30 /* RegionDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C01E325FE56DA00C23F30 /* RegionDataStore.swift */; };
 		C79C01F225FE809900C23F30 /* RegionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79C01F125FE809900C23F30 /* RegionPickerView.swift */; };
 		C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */; };
-		C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AE125F46A5F00F430D8 /* ContentView.swift */; };
+		C7BB2AE225F46A5F00F430D8 /* HomeContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AE125F46A5F00F430D8 /* HomeContentView.swift */; };
 		C7BB2AE425F46A6000F430D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BB2AE325F46A6000F430D8 /* Assets.xcassets */; };
 		C7BB2AE725F46A6000F430D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7BB2AE625F46A6000F430D8 /* Preview Assets.xcassets */; };
 		C7BB2AF225F46A6000F430D8 /* VaxSeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AF125F46A6000F430D8 /* VaxSeenTests.swift */; };
 		C7BB2AFD25F46A6100F430D8 /* VaxSeenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2AFC25F46A6100F430D8 /* VaxSeenUITests.swift */; };
-		C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B0D25F46DB800F430D8 /* CVSView.swift */; };
 		C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B1725F47EAB00F430D8 /* CVSController.swift */; };
 		C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2325F486B700F430D8 /* StoreModels.swift */; };
-		C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */; };
+		C7BB2B2C25F51F9700F430D8 /* CVSStoreListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C7011F3326018B4D0095C926 /* RiteAidController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiteAidController.swift; sourceTree = "<group>"; };
+		C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiteAidStoreListView.swift; sourceTree = "<group>"; };
+		C7011F4926025E260095C926 /* RiteAidModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiteAidModels.swift; sourceTree = "<group>"; };
 		C7867E4F25F9B21C009E68FA /* StoreMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMapView.swift; sourceTree = "<group>"; };
 		C7867E5425F9B452009E68FA /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		C78840EC25F852C00039A8AC /* StoreListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListItemView.swift; sourceTree = "<group>"; };
@@ -49,7 +54,7 @@
 		C79C01F125FE809900C23F30 /* RegionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionPickerView.swift; sourceTree = "<group>"; };
 		C7BB2ADC25F46A5F00F430D8 /* VaxSeen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaxSeen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BB2ADF25F46A5F00F430D8 /* VaxSeenApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaxSeenApp.swift; sourceTree = "<group>"; };
-		C7BB2AE125F46A5F00F430D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C7BB2AE125F46A5F00F430D8 /* HomeContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentView.swift; sourceTree = "<group>"; };
 		C7BB2AE325F46A6000F430D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7BB2AE625F46A6000F430D8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C7BB2AE825F46A6000F430D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,10 +64,9 @@
 		C7BB2AF825F46A6000F430D8 /* VaxSeenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaxSeenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7BB2AFC25F46A6100F430D8 /* VaxSeenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaxSeenUITests.swift; sourceTree = "<group>"; };
 		C7BB2AFE25F46A6100F430D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C7BB2B0D25F46DB800F430D8 /* CVSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSView.swift; sourceTree = "<group>"; };
 		C7BB2B1725F47EAB00F430D8 /* CVSController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSController.swift; sourceTree = "<group>"; };
 		C7BB2B2325F486B700F430D8 /* StoreModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreModels.swift; sourceTree = "<group>"; };
-		C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreListView.swift; sourceTree = "<group>"; };
+		C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CVSStoreListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,11 +157,11 @@
 		C7BB2B1525F4760900F430D8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C7BB2B0D25F46DB800F430D8 /* CVSView.swift */,
-				C7BB2AE125F46A5F00F430D8 /* ContentView.swift */,
+				C7BB2AE125F46A5F00F430D8 /* HomeContentView.swift */,
 				C7867E4F25F9B21C009E68FA /* StoreMapView.swift */,
 				C78840EC25F852C00039A8AC /* StoreListItemView.swift */,
-				C7BB2B2B25F51F9700F430D8 /* StoreListView.swift */,
+				C7BB2B2B25F51F9700F430D8 /* CVSStoreListView.swift */,
+				C7011F3B260234D10095C926 /* RiteAidStoreListView.swift */,
 				C79C01F125FE809900C23F30 /* RegionPickerView.swift */,
 			);
 			path = Views;
@@ -166,6 +170,7 @@
 		C7BB2B1625F4765A00F430D8 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				C7011F3326018B4D0095C926 /* RiteAidController.swift */,
 				C7BB2B1725F47EAB00F430D8 /* CVSController.swift */,
 				C7867E5425F9B452009E68FA /* LocationController.swift */,
 			);
@@ -177,6 +182,7 @@
 			children = (
 				C7BB2B2325F486B700F430D8 /* StoreModels.swift */,
 				C79C01E325FE56DA00C23F30 /* RegionDataStore.swift */,
+				C7011F4926025E260095C926 /* RiteAidModels.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -310,17 +316,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7011F3426018B4E0095C926 /* RiteAidController.swift in Sources */,
 				C7BB2B2425F486B700F430D8 /* StoreModels.swift in Sources */,
 				C79C01E425FE56DA00C23F30 /* RegionDataStore.swift in Sources */,
-				C7BB2AE225F46A5F00F430D8 /* ContentView.swift in Sources */,
-				C7BB2B2C25F51F9700F430D8 /* StoreListView.swift in Sources */,
+				C7BB2AE225F46A5F00F430D8 /* HomeContentView.swift in Sources */,
+				C7BB2B2C25F51F9700F430D8 /* CVSStoreListView.swift in Sources */,
 				C7867E5025F9B21C009E68FA /* StoreMapView.swift in Sources */,
+				C7011F4A26025E260095C926 /* RiteAidModels.swift in Sources */,
 				C7BB2AE025F46A5F00F430D8 /* VaxSeenApp.swift in Sources */,
 				C78840ED25F852C00039A8AC /* StoreListItemView.swift in Sources */,
 				C7BB2B1825F47EAB00F430D8 /* CVSController.swift in Sources */,
 				C7867E5525F9B452009E68FA /* LocationController.swift in Sources */,
-				C7BB2B0E25F46DB800F430D8 /* CVSView.swift in Sources */,
 				C79C01F225FE809900C23F30 /* RegionPickerView.swift in Sources */,
+				C7011F3C260234D10095C926 /* RiteAidStoreListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

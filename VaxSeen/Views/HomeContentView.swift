@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeContentView: View {
     
     var userRegionStore = RegionDataStore()
     
@@ -22,10 +22,18 @@ struct ContentView: View {
                 Text("Choose a pharmacy below to check for appointments")
                     .multilineTextAlignment(.center)
                     .padding()
-                NavigationLink(destination: StoreListView()) {
+                NavigationLink(destination: CVSStoreListView()) {
                     Text("CVS")
                         .frame(width: 100, height: 60, alignment: .center)
                         .border(Color.red, width: 5)
+                        .cornerRadius(5)
+                }
+                .padding()
+                NavigationLink(destination: RiteAidStoreListView()) {
+                    Text("Rite Aid")
+                        .foregroundColor(Color.red)
+                        .frame(width: 100, height: 60, alignment: .center)
+                        .border(Color.blue, width: 5)
                         .cornerRadius(5)
                 }
                 .padding()
@@ -47,6 +55,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeContentView()
     }
 }

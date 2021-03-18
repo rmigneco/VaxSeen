@@ -11,7 +11,7 @@ import SwiftUI
 struct VaxSeenApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeContentView()
         }
     }
 }

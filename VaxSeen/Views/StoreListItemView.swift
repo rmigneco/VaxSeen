@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct StoreListItemView: View {
+struct StoreListItemView<T: StoreIdentifiable>: View {
     
-    let storeItem: Store
+    let storeItem: T
     let directionsHandler: () -> Void
     
     var body: some View {
